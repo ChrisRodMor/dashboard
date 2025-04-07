@@ -11,7 +11,7 @@ app.use(express.json());
 const serverHttp = http.createServer(app);
 const io = new Server(serverHttp, {
   cors: {
-    origin: "http://localhost:3001", // Ajusta según el puerto donde se ejecute tu dashboard
+    origin: "http://25.0.177.111", // o el puerto correspondiente si es diferente
     methods: ["GET", "POST"]
   }
 });
@@ -46,8 +46,8 @@ app.post("/order", async (req, res) => {
 
 // Inicia el servidor si este archivo se ejecuta directamente
 if (require.main === module) {
-  serverHttp.listen(3000, () => {
-    console.log("Servidor corriendo en http://localhost:3000");
+  serverHttp.listen(3000, "0.0.0.0", () => {
+    console.log("Servidor corriendo en http://25.51.254.125:3000");
   });
 }
 

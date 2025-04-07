@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
 // Asegúrate de apuntar al puerto donde corre tu servidor
-const socket = io("http://localhost:3000");
+const socket = io("http://25.51.254.125:3000");
 
 function App() {
   const [orders, setOrders] = useState([]);
