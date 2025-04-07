@@ -1,29 +1,30 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-// Asegúrate de que la URL coincida con la del servidor
+// Asegúrate de apuntar al puerto donde corre tu servidor
 const socket = io("http://localhost:3000");
 
 function App() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
+    // Escuchamos el evento 'newOrder' del servidor
     socket.on("newOrder", (order) => {
-      const orderObj = JSON.parse(order);
-      setOrders((prevOrders) => [...prevOrders, orderObj]);
+      // order ya es un objeto (no hace falta JSON.parse)
+      setOrders((prevOrders) => [...prevOrders, order]);
     });
 
+    // Limpiamos el listener cuando el componente se desmonta
     return () => socket.off("newOrder");
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div>
       <h1>Dashboard de Pedidos</h1>
       <ul>
-        {orders.map((order, index) => (
+        {orders.map((o, index) => (
           <li key={index}>
-            {order.vip ? "VIP" : "Regular"}: {order.cliente} - {order.platillo}
+            {o.vip ? "VIP" : "Regular"}: {o.cliente} - {o.platillo}
           </li>
         ))}
       </ul>
