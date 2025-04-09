@@ -1,11 +1,9 @@
 // consumer.js
 const redis = require("redis");
-const redisClient = redis.createClient({
-  url: "redis://25.51.254.125:6379"
-});
 
+// Conectar a Redis
+const redisClient = redis.createClient();
 redisClient.connect().then(() => console.log("Conectado a Redis - Cocina lista"));
-
 
 async function processOrders() {
   while (true) {

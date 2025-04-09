@@ -11,7 +11,7 @@ app.use(express.json());
 const serverHttp = http.createServer(app);
 const io = new Server(serverHttp, {
   cors: {
-    origin: "http://25.0.177.111", // o el puerto correspondiente si es diferente
+    origin: "http://localhost:3001", // Ajusta según el puerto donde se ejecute tu dashboard
     methods: ["GET", "POST"]
   }
 });
